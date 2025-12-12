@@ -5,19 +5,33 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc -p .",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "prisma:validate": "env-cmd -f ../.env prisma validate --schema prisma/schema.prisma",
+    "prisma:generate": "env-cmd -f ../.env prisma generate --schema prisma/schema.prisma",
+    "prisma:migrate:dev": "env-cmd -f ../.env prisma migrate dev --schema prisma/schema.prisma --name init",
+    "dev:server:env": "env-cmd -f ../.env ts-node-dev --respawn --transpile-only src/server.ts",
+    "prisma:seed": "env-cmd -f ../.env prisma db seed",
+    "dev:setup": "pnpm run prisma:validate && pnpm run prisma:generate && pnpm run prisma:migrate:dev && pnpm run prisma:seed && pnpm run dev:server:env"
   },
   "dependencies": {
     "fastify": "^4.28.1",
     "@fastify/cors": "^9.0.1",
     "pino": "^9.5.0",
-    "@prisma/client": "^5.19.0"
+    "@prisma/client": "^5.19.0",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
-    "prisma": "^5.19.0",
+    "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "nodemon": "^3.0.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "env-cmd": "^10.1.0"
+    ,
+    "@types/node": "^20.11.30",
+    "@types/bcryptjs": "^2.4.2"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

@@ -1,6 +1,10 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
 import { logger } from './logger'
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
+
+const prisma = new PrismaClient()
 
 const app = Fastify({ logger })
 app.register(cors, { origin: true })
@@ -8,8 +12,28 @@ app.register(cors, { origin: true })
 app.get('/health', async () => ({ status: 'ok' }))
 
 app.post('/auth/login', async (req, reply) => {
-  // Placeholder: always 200 with mock user
-  return reply.send({ token: 'dev-token', user: { id: 1, email: 'demo@example.com' } })
+  const body = req.body as { username?: string; password?: string }
+  const { username, password } = body || {}
+
+  if (!username || !password) {
+    return reply.status(400).send({ error: 'Missing username or password' })
+  }
+
+  const user = await prisma.user.findUnique({ where: { username } })
+  if (!user) {
+    return reply.status(401).send({ error: 'Invalid username or password' })
+  }
+
+  const ok = await bcrypt.compare(password, user.password)
+  if (!ok) {
+    return reply.status(401).send({ error: 'Invalid username or password' })
+  }
+
+  // Basic sessionless login response; allow concurrent logins by design
+  return reply.send({
+    message: 'Login Successful',
+    user: { id: user.id, username: user.username, role: user.role },
+  })
 })
 
 const port = Number(process.env.PORT || 3000)
