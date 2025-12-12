@@ -1,0 +1,45 @@
+# Node / pnpm
+node_modules/
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs (client/server)
+dist/
+build/
+out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+**/coverage/
+
+# Vite
+.vite/
+**/.vite/
+
+# Cache & tooling
+.cache/
+.eslintcache
+.stylelintcache
+.turbo/
+.parcel-cache/
+storybook-static/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Prisma (SQLite dev DBs)
+prisma/*.db
+prisma/*.db-journal
