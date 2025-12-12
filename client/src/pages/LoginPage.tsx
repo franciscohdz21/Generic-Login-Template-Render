@@ -37,8 +37,8 @@ export default function LoginPage({ onLogin, setToast }: Props) {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-blue/10 to-brand-grey/10">
-      <form onSubmit={submit} className="bg-white w-full max-w-sm rounded-lg shadow p-6 space-y-4">
+    <div className="flex min-h-screen items-center justify-center">
+      <form onSubmit={submit} className="glass-card w-full max-w-sm p-6 space-y-4">
         <h1 className="page-title">Login</h1>
         {error && <div className="toast-error rounded-md px-3 py-2 text-sm">{error}</div>}
         <div>

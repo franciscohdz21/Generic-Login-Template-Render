@@ -10,6 +10,18 @@
   --color-yellow: #EAB308;
 }
 
+/* Modern app background */
+@layer base {
+  .app-bg {
+    /* deep slate base with soft accent gradients */
+    background-color: #0b1220;
+    background-image:
+      radial-gradient(600px 600px at 0% 0%, rgba(37,99,235,0.18), transparent 42%),
+      radial-gradient(600px 600px at 100% 100%, rgba(234,179,8,0.15), transparent 42%),
+      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  }
+}
+
 /* Shared button styles */
 @layer components {
   .btn {
@@ -21,55 +33,57 @@
   .btn-grey { @apply btn bg-brand-grey text-white hover:bg-gray-600 focus-visible:ring-gray-400; }
 
   .input {
-    @apply w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-brand-blue focus:ring-2 focus:ring-brand-blue;
+    @apply w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-gray-100 placeholder-white/50 shadow-sm focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/70;
   }
   .input-filter {
-    @apply input bg-gray-50;
+    @apply input bg-white/5;
   }
 
   .dropdown {
     @apply relative inline-block text-left;
   }
   .dropdown-button {
-    @apply btn bg-white text-gray-900 border border-gray-300 hover:bg-gray-50;
+    @apply btn bg-white/5 text-gray-100 border border-white/10 hover:bg-white/10;
   }
   .dropdown-menu {
-    @apply absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none;
+    @apply absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white/10 backdrop-blur-md shadow-lg ring-1 ring-white/10 focus:outline-none;
   }
   .dropdown-item {
-    @apply block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100;
+    @apply block w-full px-4 py-2 text-left text-sm text-gray-100 hover:bg-white/10;
   }
 
   .page-title {
-    @apply text-2xl sm:text-3xl font-semibold text-gray-900;
+    @apply text-2xl sm:text-3xl font-semibold text-gray-100;
   }
 
   .table {
     @apply w-full border-collapse overflow-hidden rounded-md shadow-sm;
   }
   .table thead th {
-    @apply bg-gray-50 text-left text-sm font-semibold text-gray-700 px-3 py-2 border-b;
+    @apply bg-white/5 text-left text-sm font-semibold text-gray-200 px-3 py-2 border-b border-white/10;
   }
   .table tbody td {
-    @apply text-sm text-gray-800 px-3 py-2 border-b;
+    @apply text-sm text-gray-200 px-3 py-2 border-b border-white/10;
   }
 
   .sidebar {
-    @apply h-screen w-64 bg-white border-r border-gray-200 shadow-sm flex flex-col transition-all duration-300 ease-modest;
+    @apply h-screen w-64 bg-white/5 border-r border-white/10 backdrop-blur-md shadow-sm flex flex-col transition-all duration-300 ease-modest text-gray-100;
   }
   .sidebar.collapsed { @apply w-16; }
   .sidebar-toggle {
-    @apply btn-grey w-full rounded-none;
+    @apply btn-grey w-full rounded-none bg-white/10 hover:bg-white/20 border border-white/10;
   }
   .nav-button {
-    @apply flex items-center gap-3 text-left w-full px-3 py-2 text-gray-800 hover:bg-gray-100 rounded-md transition-colors duration-200 ease-modest;
+    @apply flex items-center gap-3 text-left w-full px-3 py-2 text-gray-200 hover:bg-white/10 rounded-md transition-colors duration-200 ease-modest;
   }
   .nav-button.active { @apply bg-brand-blue text-white hover:bg-blue-600; }
 }
 
 /* Toast colors */
 @layer components {
-  .toast-success { @apply bg-brand-green text-white; }
-  .toast-error { @apply bg-brand-red text-white; }
-  .toast-warning { @apply bg-brand-yellow text-white; }
+  .toast-success { @apply bg-brand-green/90 text-white backdrop-blur-md ring-1 ring-white/10; }
+  .toast-error { @apply bg-brand-red/90 text-white backdrop-blur-md ring-1 ring-white/10; }
+  .toast-warning { @apply bg-brand-yellow/90 text-white backdrop-blur-md ring-1 ring-white/10; }
+
+  .glass-card { @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg; }
 }

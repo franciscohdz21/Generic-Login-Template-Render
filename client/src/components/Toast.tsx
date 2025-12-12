@@ -17,6 +17,6 @@ export default function Toast({ type, message, onHide, duration = 3000 }: Props)
     type === 'success' ? 'toast-success' : type === 'error' ? 'toast-error' : 'toast-warning'
 
   return (
-    <div className={`fixed top-4 right-4 ${cls} rounded-md shadow px-4 py-2 text-sm`}>{message}</div>
+    <div className={`fixed top-4 right-4 z-50 ${cls} rounded-md shadow-xl px-4 py-2 text-sm`}>{message}</div>
   )
 }

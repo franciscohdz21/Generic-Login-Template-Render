@@ -10,7 +10,7 @@ function App() {
   const [toast, setToast] = useState<{ type: 'success' | 'error' | 'warning'; message: string } | null>(null)
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen app-bg text-gray-100">
       {toast && (
         <Toast type={toast.type} message={toast.message} onHide={() => setToast(null)} />
       )}
@@ -18,7 +18,7 @@ function App() {
         <LoginPage onLogin={() => setIsAuthenticated(true)} setToast={setToast as any} />
       ) : (
         <div className="flex">
-          <Sidebar />
+          <Sidebar onLogout={() => { setIsAuthenticated(false); setToast(null) }} />
           <main className="flex-1 p-4">
             <Routes>
               <Route path="/welcome" element={<WelcomePage />} />

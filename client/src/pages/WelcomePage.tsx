@@ -1,6 +1,6 @@
 export default function WelcomePage() {
   return (
-    <div className="space-y-4">
+    <div className="glass-card p-6 space-y-4">
       <h1 className="page-title">Welcome</h1>
       <div className="flex gap-2">
         <button className="btn-green">Add / Accept</button>
